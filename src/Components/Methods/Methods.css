@@ -1,0 +1,32 @@
+.methods__bar{
+    border: solid 1px white;
+    width: 80%;
+    height: 230px;
+    margin-bottom: 10px;
+  }
+
+  .methods__Cont{
+    margin-top: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-left: 0px;
+  
+  }
+
+  .methods__hr{
+    width: 100px;
+    color: white;
+    height: 2px !important;
+    border-radius: 100px;
+  }
+
+  .methods__Cont img{
+    width: 140px;
+    opacity: 0.7;
+  }
+  
+  .methods__Cont img:hover{
+    opacity: 1;
+  }
