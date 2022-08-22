@@ -9,7 +9,7 @@ import whatsapp from "../../imgs/whatsapp.png";
 const SideBar = () => {
   return (
     
-    <ProSidebar width={200} className="sideBar__cont" >
+    <ProSidebar width={200}  className="sideBar__cont" >
       <Menu className="" iconShape="square">
         <MenuItem>
           <img className="sideBar__logo" src={logo} alt="" />

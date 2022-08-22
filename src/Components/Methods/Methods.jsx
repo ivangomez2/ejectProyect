@@ -1,92 +1,94 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img from "../../imgs/Explora.png";
-import sueña from "../../imgs/Sueña.png";
+import entrenamiento from "../../imgs/entrrre.png";
 import descubre from "../../imgs/Descubre.png";
-import head from "../../imgs/head.png"
-import head2 from "../../imgs/head2.png"
-import head3 from "../../imgs/head3.png"
+import head from "../../imgs/logotype.png";
+import descuMenu from "../../imgs/descuMenu.png";
+import mantenimiento from "../../imgs/Mantenimiento.png";
+import asesoramiento from "../../imgs/Asesoramiento.png";
 import "./Methods.css";
-
+import { Button } from "@mui/material";
+import { Spinner } from "react-bootstrap";
+import jose from "../../imgs/jose.png";
+import videoSue from "../../imgs/videoSue.mp4";
+import Carrousel from "../Carrousel/Carrousel";
 const Methods = ({ productos }) => {
-  const [sueñ, setSueña] = useState(false);
-  const [descubr, setDescubre] = useState(false);
-  const [explora, setExplora] = useState(false);
-  console.log(productos);
-
-  const suenaClick = () => {
-    setSueña(!sueñ);
-    setDescubre(false);
-    setExplora(false);
-  };
-
-  const descubrClick = () => {
-    setDescubre(!descubr);
-    setSueña(false);
-    setExplora(false);
-  };
-
-  const exploraClick = () => {
-    setExplora(!explora);
-    setDescubre(false);
-    setSueña(false);
-  };
-
-  console.log(productos);
-
+  const [prod, setProd] = useState([]);
+  
   return (
     <>
       <div className="methods__Cont">
-        <img onClick={() => suenaClick()} src={sueña} alt="" />
+        <img style={{ width: "290px" }} src={img} alt="" />
         <hr className="methods__hr" />
-        <img onClick={() => exploraClick()} src={img} alt="" />
+        <img style={{ width: "290px" }} src={asesoramiento} alt="" />
         <hr className="methods__hr" />
-        <img onClick={() => descubrClick()} src={descubre} alt="" />
+        <img style={{ width: "290px" }} src={mantenimiento} alt="" />
       </div>
-      <div>
-        {sueñ ? (
-          <div className="methods__div d-flex methods__imgp">
-            <h1 style={{ color: "white" }}>Integración sueña</h1>
-            <img src={head} alt="" />
-            <p>
-              Work shop técnico con la actualizacion en coleccion de
-              diseño capilar con formatos de 8 horas.
-            </p>
-          
-          </div>
-        ) : (
-          <></>
-        )}
 
-        {explora ? (
-          <div className="methods__div d-flex methods__imgp">
+      <div className="d-flex methods__menuCont">
+        <div className="menu">
+          <h4>Entrenamiento</h4>
+
+          {productos.map((item) => {
+            return (
+              <img
+                onClick={() => {
+                  setProd(item);
+                }}
+                style={{ width: "150px" }}
+                className="menu__img"
+                src={item.img}
+              />
+            );
+          })}
+
+        <div className="methods__marcaCont">
+            <hr className="methods__marcaContHr" />
+            <p>
+              En veinte años lamentaras mas las cosas que no hiciste que
+              las que hiciste, así que suelta amarras,abandona el puerto seguro,
+              alza los vientos en tus velas.{" "}
+              <span style={{ color: "red", fontWeight: "600" }}>
+                SUEÑA EXPLORA DESCUBRE
+              </span>
+            </p>
+            <hr className="methods__marcaContHr" />
+            <img style={{ width: "130px" }} src={head} alt="" />
+          </div>
+        </div>
+        
+     
+        {prod.length === 0 ? 
+        <div className="w-100">  <Carrousel /> </div> : 
     
-            <h1 style={{ color: "white" }}>Nivelación explora</h1>
-            <img src={head2} alt="" />
-            <p>
-              Clinicas técnico artísticas para grupos específicos y
-              personalizados. Realizadas desde salones de belleza o centros
-              educativos.
-            </p>
-          </div>
-        ) : (
-          <></>
-        )}
+        <div className="methods__cont">
+          <div className="">
+            <video className="methods__video" autoPlay loop>
+              <source src={prod.videos} type="video/mp4" />
+            </video>
 
-        {descubr ? (
-          <div className="methods__div d-flex methods__imgp">
-            <h1 style={{ color: "white" }}>Formación descubre</h1>
-            <img src={head3} alt="" />
-            <p>
-              Capacitación integral en diseño capilar en las áreas de corte de cabello unisex, barbería
-              ,colorimetría y tratamientos modificadores.
-            </p>
-         
+            <h6>
+              <span style={{ color: "red" }}>{prod.color}</span>{" "}
+              {prod.descColor}{" "}
+              <span style={{ color: "red" }}> {prod.colorLogo}</span>
+            </h6>
           </div>
-        ) : (
-          <></>
-        )}
-      </div>
-    </>
+
+          <div className="">
+            <h4 style={{ color: "white" }}>{prod.detailTitle}</h4>
+
+            <div>
+              <h6 style={{ color: "red" }}>{prod.detailSubTitle}</h6>
+              <ul>
+                <li>{prod.detail1}</li>
+                <li>{prod.detail2}</li>
+                <li>{prod.detail3}</li>
+              </ul>
+            </div>
+          </div>
+        </div> }
+      </div> 
+     </>
   );
 };
 

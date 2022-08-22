@@ -1,0 +1,57 @@
+.top-nav {
+  position: fixed;
+  bottom: 85%;
+  margin-left: 30px;
+ 
+  height: 70px;
+}
+
+
+.menus__bar {
+  width: 35px;
+  border: solid 1px white;
+  border-radius: 10px;
+  border-width: 2px;
+  background-color: aliceblue;
+  margin-top: 5px;
+}
+
+.menus__fixPos {
+  margin-bottom: 5px !important;
+}
+
+.menus__whatsapp {
+
+    position:fixed;
+     top:88%;
+     left: -25px;
+}
+
+.menus__whatsapp img {
+  width: 150px;
+
+}
+
+.menu__cont{
+  display: flex;
+  
+
+}
+
+
+
+.menu__ul{
+  list-style: none;
+  color: white;
+  font-weight: 600;
+  
+}
+
+.menu__ul li{
+  margin-top: 5px;
+}
+
+
+
+
+  

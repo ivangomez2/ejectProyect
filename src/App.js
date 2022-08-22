@@ -3,17 +3,19 @@ import './App.css';
 import SideBar from './Components/SideBar/SideBar';
 import Methods from './Components/Methods/Methods';
 import MethodListContainer from './Components/Methods/MethodListContainer';
-import MethodList from './Components/Methods/MethodList';
+import Contact from './Components/Contact/Contact';
+import ContactText from './Components/Contact/ContactText';
+import Carrousel from './Components/Carrousel/Carrousel';
+import { Menu } from 'react-pro-sidebar';
+import Menus from './Components/Menu/Menus';
+
+
 
 function App() {
   return (
     <div className="App">
-   <div style={{position:"absolute"}}>
-   <SideBar />
-   </div>
-
-   <Methods />
-  
+    <Menus />
+    <MethodListContainer />
     </div>
   );
 }
