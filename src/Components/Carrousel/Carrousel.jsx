@@ -7,7 +7,7 @@ import "./Carrousell.css"
 const Carrousel = () => {
   return (
     <div>
-    <Carousel  controls={false} className='carousel__cont' fade={true}  indicators={false} interval={3000}>  
+    <Carousel  controls={false} className='carousel__cont' fade={true}  indicators={false} interval={2000}>  
       <Carousel.Item className='wdt'>
         <img
           className="d-block carousel__imgs"

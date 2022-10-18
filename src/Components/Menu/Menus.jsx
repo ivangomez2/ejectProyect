@@ -1,5 +1,7 @@
 import React from "react";
 import "./Menu.css";
+import facebook from "../../imgs/facebookIcon.png"
+import insta from "../../imgs/instaIcon.png"
 import whatsapp from "../../imgs/whatsapp.png";
 import { useState } from "react";
 const Menus = () => {
@@ -31,7 +33,12 @@ const Menus = () => {
       )}
  </div>
       <div className="menus__whatsapp">
-        <img src={whatsapp} />
+        <img className="instagram__fixedIcon showText" src={facebook} alt="" />
+        <p className="hide">Seguinos en Facebook</p>
+        <img className="instagram__fixedIcon showText" src={insta} alt="" />
+        <p className="hide">Seguinos en Instagram</p>
+        <img style={{marginTop:"-10px",width:"120px"}} className="showText" src={whatsapp} />
+        <p className="hide">Envianos un Whatsapp</p>
       </div>
 
 

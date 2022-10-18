@@ -1,94 +1,139 @@
-import React, { useEffect, useState } from "react";
-import img from "../../imgs/Explora.png";
-import entrenamiento from "../../imgs/entrrre.png";
-import descubre from "../../imgs/Descubre.png";
-import head from "../../imgs/logotype.png";
-import descuMenu from "../../imgs/descuMenu.png";
-import mantenimiento from "../../imgs/Mantenimiento.png";
-import asesoramiento from "../../imgs/Asesoramiento.png";
+import React, { useContext, useEffect, useState } from "react";
+
 import "./Methods.css";
-import { Button } from "@mui/material";
-import { Spinner } from "react-bootstrap";
-import jose from "../../imgs/jose.png";
-import videoSue from "../../imgs/videoSue.mp4";
+import sueñaRedondo from "../../imgs/sueñaRedondo.png"
+import descubreRedondo from "../../imgs/descubreRedondo.png"
+import exploraRedondo from "../../imgs/exploraRedondo.png"
 import Carrousel from "../Carrousel/Carrousel";
+import demo from "../../imgs/demo.png"
+import one from "../../imgs/1.png"
+import two from "../../imgs/2.png"
+import three from "../../imgs/3.png"
+import MethodsListMenu from "./MethodsListMenu";
+import ButtonsIntro from "../ButtonsIntro/ButtonsIntro";
+import { GlobalContexts } from "../../Context/GlobalContext";
 const Methods = ({ productos }) => {
   const [prod, setProd] = useState([]);
+  const {catFilter, setCatFilter,category, setCategory} = useContext(GlobalContexts);
   
+  console.log(category);
+
+  const filtrado = productos.filter((item) => item.Categoria == category);
+  useEffect(() => {
+    setCatFilter(filtrado);
+    console.log(catFilter);
+  }, [category]);
+
   return (
     <>
       <div className="methods__Cont">
-        <img style={{ width: "290px" }} src={img} alt="" />
-        <hr className="methods__hr" />
-        <img style={{ width: "290px" }} src={asesoramiento} alt="" />
-        <hr className="methods__hr" />
-        <img style={{ width: "290px" }} src={mantenimiento} alt="" />
+          <ButtonsIntro productos={productos} />
       </div>
+      
+      {catFilter.length > 0 ? (
+        <div className="d-flex methods__menuCont">
+          <div className="menu">
+            <h4>{prod.Categoria}</h4>
+            {catFilter.map((item) => {
+              return (
+                <>
+                  <img
+                    onClick={() => {
+                      setProd(item);
+                    }}
+                    style={{ width: "150px" }}
+                    className="menu__img"
+                    src={item.img}
+                  />
+                </>
+              );
+            })}
 
-      <div className="d-flex methods__menuCont">
-        <div className="menu">
-          <h4>Entrenamiento</h4>
-
-          {productos.map((item) => {
-            return (
-              <img
-                onClick={() => {
-                  setProd(item);
-                }}
-                style={{ width: "150px" }}
-                className="menu__img"
-                src={item.img}
-              />
-            );
-          })}
-
-        <div className="methods__marcaCont">
-            <hr className="methods__marcaContHr" />
-            <p>
-              En veinte años lamentaras mas las cosas que no hiciste que
-              las que hiciste, así que suelta amarras,abandona el puerto seguro,
-              alza los vientos en tus velas.{" "}
-              <span style={{ color: "red", fontWeight: "600" }}>
-                SUEÑA EXPLORA DESCUBRE
-              </span>
-            </p>
-            <hr className="methods__marcaContHr" />
-            <img style={{ width: "130px" }} src={head} alt="" />
-          </div>
-        </div>
-        
-     
-        {prod.length === 0 ? 
-        <div className="w-100">  <Carrousel /> </div> : 
-    
-        <div className="methods__cont">
-          <div className="">
-            <video className="methods__video" autoPlay loop>
-              <source src={prod.videos} type="video/mp4" />
-            </video>
-
-            <h6>
-              <span style={{ color: "red" }}>{prod.color}</span>{" "}
-              {prod.descColor}{" "}
-              <span style={{ color: "red" }}> {prod.colorLogo}</span>
-            </h6>
+          <MethodsListMenu productos={productos} />
+            
           </div>
 
-          <div className="">
-            <h4 style={{ color: "white" }}>{prod.detailTitle}</h4>
-
-            <div>
-              <h6 style={{ color: "red" }}>{prod.detailSubTitle}</h6>
-              <ul>
-                <li>{prod.detail1}</li>
-                <li>{prod.detail2}</li>
-                <li>{prod.detail3}</li>
-              </ul>
+          {prod.length === 0 ? (
+            <div className="w-100">
+              {" "}
+              <Carrousel />{" "}
             </div>
-          </div>
-        </div> }
-      </div> 
-     </>
+          ) : (
+            <div className="methods__presentacionCont">
+                   <img
+                    className="mt-3 methods__bannerIntro"
+                    src={demo}
+                    maxWidth={800}
+                  />
+
+                 <h5 style={{color:"#A19A97",padding:"8px",backgroundColor:"#09090A"}}>Sistema regulador internacional de calidad educativa</h5>
+               
+          
+               <div className="methods__buttonMethod">
+                <img src={sueñaRedondo} alt="" />
+                <img src={descubreRedondo} alt="" />
+                <img  src={exploraRedondo} alt="" />
+               <hr className="methods__hr"  />
+               </div>
+
+                  
+                 <div className="methods__titlePhoto">
+               
+                <div className="methods__description">
+                 
+                  <h3 style={{color:"#B2ACA3", fontFamily:"monospace"}}>Descripción</h3>
+                  <h6 style={{marginTop:"20px",marginRight:"20px",color: "rgb(161, 161, 161)",marginBottom:"60px"}} >
+                    <span >
+                      {prod.color}
+                    </span>{" "}
+                    {prod.descColor}{" "}
+                    <span style={{ color: "red" }}> {prod.colorLogo}</span>
+                  </h6>
+
+                  <div className="methods__objetivos">
+                  
+                  <h3 style={{color:"#B2ACA3",fontFamily:"monospace"}}>Objetivos</h3>
+                  <h6 style={{marginTop:"20px",color:  "rgb(161, 161, 161)"}} >
+                  
+                      {prod.objetivo}
+                   
+                 
+                    <span style={{color: "red" ,fontFamily:"monospace"}}> {prod.colorLogo}</span>
+                  
+                  </h6>
+                  
+                  </div>
+                  
+                  </div>
+                 
+                 
+                  <img
+                    className="w-50 methods__bannerIntro"
+                    src={prod.collage}
+                   
+                  />
+             </div>
+             <div className="methods__detailCont">
+             <h3 style={{fontFamily:"monospace"}}>Detalles</h3>
+             <div className="methods__detailContDetail">
+              <h4 style={{marginRight:"700px",marginTop:"70px",color:"#B2ACA3"}}>Sueña</h4>
+              <img style={{bottom:"61px",right:"240px"}} src={two} alt="" />
+              
+              <img style={{bottom:"94px",right:"320px"}} src={one} alt="" />
+              <img style={{bottom:"28px",right:"370px"}} src={three} alt="" />
+
+
+             </div>
+             </div>
+              
+ 
+            </div>
+          )}
+        </div>
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 

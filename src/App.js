@@ -1,21 +1,40 @@
-import logo from './imgs/fondo.jpg';
-import './App.css';
-import SideBar from './Components/SideBar/SideBar';
-import Methods from './Components/Methods/Methods';
-import MethodListContainer from './Components/Methods/MethodListContainer';
-import Contact from './Components/Contact/Contact';
-import ContactText from './Components/Contact/ContactText';
-import Carrousel from './Components/Carrousel/Carrousel';
-import { Menu } from 'react-pro-sidebar';
-import Menus from './Components/Menu/Menus';
-
-
+import "./App.css";
+import MethodListContainer from "./Components/Methods/MethodListContainer";
+import Menus from "./Components/Menu/Menus";
+import { useState } from "react";
+import { LinearProgress } from "@mui/material";
+import background from "../src/imgs/fondo.jpg";
+import GlobalContext from "./Context/GlobalContext";
 
 function App() {
+  const [fondo, setFondo] = useState(true);
+  {
+    setTimeout(() => {
+      setFondo(false);
+    }, 4000);
+  }
+
   return (
     <div className="App">
-    <Menus />
-    <MethodListContainer />
+      <GlobalContext>
+        {fondo === true ? (
+          <>
+            <img className="bgImgAnimation" src={background} />
+            <LinearProgress className="linearBar" color="error" />
+            <div className=" bgText d-flex ">
+              <p>Sueña</p>
+              <p>Explora</p>
+              <p>Descubre</p>
+            </div>
+          </>
+        ) : (
+          <div>
+            <img className="bgImg" src={background} />
+            <Menus />
+            <MethodListContainer />
+          </div>
+        )}
+      </GlobalContext>
     </div>
   );
 }
